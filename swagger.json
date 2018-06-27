@@ -1,0 +1,85 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "Yet Another Node.js Blogg Application API",
+      "description": "Yet Another Node.js Blogg Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "10.100.11.93:3000",
+    "basePath": "/",
+    "tags": [
+      {
+        "name": "json2excel",
+        "description": "API for creating excel from a json description of excel"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "produces": [
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    ],
+    "paths": {
+      "/": {
+        "post": {
+          "description": "Create new user in system",
+          "parameters": [
+            {
+              "name": "excelJSON",
+              "in": "body",
+              "description": "json that the describes the excel to be created",
+              "schema": {
+                "$ref": "#/definitions/excelJSON"
+              }
+            }
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns an excel file"
+            }
+          }
+        }
+    }
+},
+    "definitions": {
+      "excelJSON": {
+        "properties": {
+          "columnsBold": {
+            "type": "boolean"
+          },
+          "columns": {
+            "type": "array",
+            "items":{
+                "type":"string"
+            }
+          },
+          "rows": {
+            "type": "array",
+            "items":{
+                "type":"array",
+                "items":{
+                    "anyOf":[
+                        {"type":"string"},
+                        {"type":"number"},
+                        {"type":"integer"},
+                        {"type":"boolean"}
+                    ]
+                }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+
